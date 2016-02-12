@@ -23,34 +23,7 @@
     
  
     
- /**
- * Post Grid
- *
- */
-if (!function_exists('posts_grid_shortcode')) {
-
-	function posts_grid_shortcode( $atts, $content = null, $shortcodename = '' ) {
-		extract(shortcode_atts(array(
-			'type'            => 'post',
-			'category'        => '',
-			'custom_category' => '',
-			'tag'             => '',
-			'columns'         => '3',
-			'rows'            => '3',
-			'order_by'        => 'date',
-			'order'           => 'DESC',
-			'thumb_width'     => '370',
-			'thumb_height'    => '250',
-			'meta'            => '',
-			'excerpt_count'   => '15',
-			'link'            => 'yes',
-			'link_text'       => __('Read more', CHERRY_PLUGIN_DOMAIN),
-			'custom_class'    => ''
-		), $atts));
-
-		$spans = $columns;
-		$rand  = rand();
-
+ 
 		// columns
 		switch ($spans) {
 			case '1':
@@ -66,6 +39,21 @@ if (!function_exists('posts_grid_shortcode')) {
 				$spans = 'span3';
 				break;
 			case '6':
+				$spans = 'span2';
+				break;
+			case '1':
+				$spans = 'span12';
+				break;
+			case '2':
+				$spans = 'span6';
+				break;
+			case '3':
+				$spans = 'span4';
+				break;
+			case '4':
+				$spans = 'span3';
+				break;
+			case '7':
 				$spans = 'span2';
 				break;
 		}
@@ -363,7 +351,6 @@ if (!function_exists('posts_grid_shortcode')) {
     		</div>
     <?php }
     }
-     
     //------------------------------------------------------
     //  Related Posts
     //------------------------------------------------------
@@ -384,6 +371,7 @@ if (!function_exists('posts_grid_shortcode')) {
 				'after_title' => '</h3>',
 				'posts_count' => 4
 			);
+			//test github
 			extract(array_merge($default, $args));
 
 			$post_tags = wp_get_post_terms($post->ID, $post_type.'_tag', array("fields" => "slugs"));
